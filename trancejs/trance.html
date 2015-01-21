@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+    <div class="trance" data-index="1">class1</div>
+    <div class="trance" data-index="2">class2</div>
+    <div class="trance" data-index="3">class3</div>
+    <div class="trance" data-index="4">class4</div>
+    <div id="trance">id1</div>
+    <div id="trance">id2</div>
+    <div class="trance"><a href="javascript:;" data-index="5">a 链接</a></div>
+    <p>tagname</p>
+
+    <div class="wrap">
+
+        <p class="trance" data-index="01">wrap-trance1</p>
+        <p class="trance" data-index="02">wrap-trance2</p>
+        <p class="trance" data-index="03">wrap-trance3</p>
+        <p class="trance" data-index="04">wrap-trance4</p>
+
+        <ul class="box">
+            <li class="trance" data-game="0305">box-trance1</li>
+            <li class="trance" data-game="1110">box-trance2</li>
+            <li class="trance" data-game="0501">box-trance3</li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="src/trance.js"></script>
+    <script type="text/javascript">
+        TRANCE([{
+            url : '', //例如：http://localhost:12345/local/trance.json
+            target : {'way':'byTagName','name':'body'},
+            event : 'click',
+            handle : function(tar) {
+                //tar为里面返回的当前的点击对象
+                var data = null,
+                    index = tar.getAttribute('data-index'),
+                    rtime = 41235124351;
+                data = {'index' : index, 'rtime' : rtime};
+                //最后返回要上报的数据(ajax的data)
+                return data;
+            }
+        },{
+            url : '',
+            target : {'way':'byClassName','name':'wrap'},
+            event : 'click',
+            handle : function(tar) {
+                //tar为里面返回的当前的点击对象
+                var data = null,
+                    client = tar.getAttribute('data-index'),
+                    rtime = 1234567890;
+                data = {'client' : client, 'rtime' : rtime};
+                //最后返回要上报的数据(ajax的data)
+                return data;
+            }
+        },{
+            url : '',
+            target : {'way':'byClassName','name':'box'},
+            event : 'click',
+            handle : function(tar) {
+                //tar为里面返回的当前的点击对象
+                var data = null,
+                    gameId = tar.getAttribute('data-game'),
+                    rtime = 0987654321;
+                data = {'game' : gameId, 'rtime' : rtime};
+                //最后返回要上报的数据(ajax的data)
+                return data;
+            }
+        },{
+            url : '',
+            domready : true,
+            handle : function() {
+                //tar为里面返回的当前的点击对象
+                var data = null,
+                    rtime = 0987654321,
+                    page = 'page1';
+                data = {'page' : page, 'rtime' : rtime};
+                //最后返回要上报的数据(ajax的data)
+                return data;
+            }
+        }]);
+    </script>
+
+</body>
+</html>
